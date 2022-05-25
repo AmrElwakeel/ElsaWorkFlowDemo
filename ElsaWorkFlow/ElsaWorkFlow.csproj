@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>5e381284-8f96-47f7-bfc9-6513b8b3421b</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Elsa" Version="2.7.0" />
+    <PackageReference Include="Elsa.Activities.Http" Version="2.7.0" />
+    <PackageReference Include="Elsa.Activities.Temporal.Quartz" Version="2.7.0" />
+    <PackageReference Include="Elsa.Designer.Components.Web" Version="2.7.0" />
+    <PackageReference Include="Elsa.Persistence.EntityFramework.Sqlite" Version="2.7.0" />
+    <PackageReference Include="Elsa.Persistence.EntityFramework.SqlServer" Version="2.7.0" />
+    <PackageReference Include="Elsa.Server.Api" Version="2.7.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+  </ItemGroup>
+
+</Project>
