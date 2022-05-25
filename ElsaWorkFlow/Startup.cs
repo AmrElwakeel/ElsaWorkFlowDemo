@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
-
+using ElsaWorkFlow.DomainDataBase;
+using ElsaWorkFlow.WorkflowContexts;
+using Elsa.Runtime;
 namespace ElsaWorkFlow
 {
     public class Startup
@@ -27,15 +29,23 @@ namespace ElsaWorkFlow
         public void ConfigureServices(IServiceCollection services)
         {
             var elsaSection = Configuration.GetSection("Elsa");
+
             var SqlServerconnectionString = Configuration.GetConnectionString("Defualt");
+
+            services.AddDbContextPool<BlogDBContext>(opt => opt.UseSqlServer(SqlServerconnectionString, typeof(BlogDBContext)));
+
+
             // Elsa services.
             services
                 .AddElsa(options => options.UseEntityFrameworkPersistence(ef => ef.UseSqlServer(SqlServerconnectionString))
                     .AddConsoleActivities()
+                    .AddJavaScriptActivities()
                     .AddHttpActivities(elsaSection.GetSection("Server").Bind)
                     .AddQuartzTemporalActivities()
                     .AddWorkflowsFrom<Startup>()
                 );
+
+            services.AddWorkflowContextProvider<BlogPostWorkflowContextProvider>();
 
             // Elsa API endpoints.
             services.AddElsaApiEndpoints();
