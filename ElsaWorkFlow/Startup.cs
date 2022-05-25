@@ -34,6 +34,7 @@ namespace ElsaWorkFlow
 
             services.AddDbContextPool<BlogDBContext>(opt => opt.UseSqlServer(SqlServerconnectionString, typeof(BlogDBContext)));
 
+            services.AddCors(cors => cors.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
             // Elsa services.
             services
