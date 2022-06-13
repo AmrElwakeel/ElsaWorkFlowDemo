@@ -42,11 +42,13 @@ namespace ElsaWorkFlow
                     .AddConsoleActivities()
                     .AddJavaScriptActivities()
                     .AddHttpActivities(elsaSection.GetSection("Server").Bind)
+                    .AddEmailActivities(elsaSection.GetSection("Smtp").Bind)
                     .AddQuartzTemporalActivities()
                     .AddWorkflowsFrom<Startup>()
                 );
 
-            services.AddWorkflowContextProvider<BlogPostWorkflowContextProvider>();
+            services.AddWorkflowContextProvider<BlogPostWorkflowContextProvider>()
+                .AddWorkflowContextProvider<RequestWorkflowContextProvider>();
 
             // Elsa API endpoints.
             services.AddElsaApiEndpoints();
