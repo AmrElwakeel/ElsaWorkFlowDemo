@@ -1,0 +1,18 @@
+﻿@page
+@model ElsaWorkFlow.Pages.updaterequestinfoModel
+@{
+    var list = new List<string>
+    {
+        "ssd",
+        "hdd"
+    }; 
+
+}
+<h1>update request info</h1>
+@foreach(var item in list){
+    <h2>@item</h2>
+}
+
+<form method="post">
+    <input type="submit" title="Submit Info">
+</form>
