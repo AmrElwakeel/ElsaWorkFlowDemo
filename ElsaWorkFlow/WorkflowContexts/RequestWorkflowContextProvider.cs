@@ -54,6 +54,7 @@ namespace ElsaWorkFlow.WorkflowContexts
                 context.WorkflowExecutionContext.WorkflowContext = blogPost;
                 context.WorkflowExecutionContext.ContextId = blogPost.Id;
 
+                blogPost.Status = 2;
                 // Add blog post to DB.
                 await dbSet.AddAsync(blogPost, cancellationToken);
             }
@@ -63,6 +64,7 @@ namespace ElsaWorkFlow.WorkflowContexts
                 var existingBlogPost = dbSet.AsQueryable().Where(x => x.Id == blogPostId).First();
 
                 _blogDbContext.Entry(existingBlogPost).CurrentValues.SetValues(blogPost);
+                blogPost.Status = 3;
             }
 
             await _blogDbContext.SaveChangesAsync(cancellationToken);
